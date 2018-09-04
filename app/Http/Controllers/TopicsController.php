@@ -41,7 +41,7 @@ class TopicsController extends Controller
 		$topic ->fill($request->all());
 		$topic->user_id=Auth::id();
 		$topic ->save();
-		return redirect()->to($topics->link())->with('message', '成功创建话题');
+		return redirect()->to($topic->link())->with('message', '成功创建话题');
 	}
 
 	public function edit(Topic $topic)
@@ -56,7 +56,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->to($topics->link())->with('message', '更新成功.');
+		return redirect()->to($topic->link())->with('message', '更新成功.');
 	}
 
 	public function destroy(Topic $topic)
