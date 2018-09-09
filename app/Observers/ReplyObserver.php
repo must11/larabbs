@@ -19,5 +19,15 @@ class ReplyObserver
 
     }
 
+    public function destroy(User $user, Reply $reply)
+    {
+        return $user->isAuthorOf($reply) || $user->isAuthorOf($reply->topic);
+    }
+
+    public function deleted(Reply $reply)
+    {
+        $reply->topic->decrement('reply_count', 1);
+    }
+
 
 }
